@@ -40,8 +40,8 @@ Method: POST
 
 JSON data to post
 
-```json
-{'task': 'task name', 'is_done': true}
+```
+{'task': 'task name', 'is_done': false}
 ```
 
 ### Change task is done
