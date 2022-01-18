@@ -46,6 +46,17 @@ let doneData = (index) => {
     request.end()
 }
 
+let undoneData = (index) => {
+    var request = http.request({
+        host: 'localhost',
+        port: 8000,
+        method: "GET",
+        path: `/undone?id=${index}`
+    })
+
+    request.end()
+}
+
 let showData = () => {
     var request = http.request({
         host: 'localhost',
@@ -94,6 +105,7 @@ let get_arg = (name) => {
 let add = get_arg('add')
 let del = get_arg('del')
 let done = get_arg('done')
+let undone = get_arg('undone')
 
 if (add) {
     addData(add)
@@ -103,6 +115,9 @@ if (add) {
     showData()
 } else if (done) {
     doneData(done)
+    showData()
+} else if (undone) {
+    undoneData(undone)
     showData()
 } else {
     showData()

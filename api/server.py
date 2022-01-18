@@ -31,6 +31,13 @@ class Server(BaseHTTPRequestHandler):
             db.data.update({id: req})
             db.commit()
             self.wfile.write(bytes(json.dumps({"msg": "ok"}), encoding="utf-8"))
+        elif self.path == "/undone":
+            id = queries.get("id")[0]
+            req = db.get_document_by_id(id)
+            req["is_done"] = False
+            db.data.update({id: req})
+            db.commit()
+            self.wfile.write(bytes(json.dumps({"msg": "ok"}), encoding="utf-8"))
         else:
             self.wfile.write(bytes(json.dumps({"msg": "bad"}), encoding="utf-8"))
 
